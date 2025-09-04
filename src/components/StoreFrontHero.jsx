@@ -44,6 +44,8 @@ export default function StoreFrontHero() {
 
   return (
     <section id="home" className="relative overflow-hidden">
+      {/* Awning decorative strip */}
+      <div className="awning h-3 md:h-4 w-full shadow-sm"></div>
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 bg-maya/10 rounded-full blur-3xl animate-float"></div>
@@ -86,7 +88,7 @@ export default function StoreFrontHero() {
                       Frontend Developer & Designer
                     </p>
                     <div className="flex items-center justify-center gap-2 text-xs text-chalk/70">
-                      <span className="flex items-center gap-1">
+                      <span className="flex items-center gap-1 neon-open font-semibold">
                         <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                         Open Now
                       </span>
@@ -166,29 +168,6 @@ export default function StoreFrontHero() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        @keyframes float-delayed {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-        }
-        @keyframes wiggle {
-          0%, 100% { transform: rotate(-3deg); }
-          50% { transform: rotate(3deg); }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-          animation: float-delayed 8s ease-in-out infinite;
-        }
-        .animate-wiggle {
-          animation: wiggle 2s ease-in-out infinite;
-        }
-      `}</style>
     </section>
   )
 }

@@ -23,7 +23,13 @@ export default {
         sticker: "0 6px 18px rgba(0,0,0,0.15)",
       },
       backgroundImage: {
-        paper: "radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px)",
+        // If you keep assets under src/assets, Vite dev server can resolve these paths.
+        // For production, consider moving them to /public and switching to url('/paper-texture.png').
+        paper: "url('/src/assets/paper-texture.png')",
+        chalkboard: "url('/src/assets/chalkboard-bg.png')",
+        awning: "url('/src/assets/grid.png')", // awning pattern if needed
+        wood: "url('/src/assets/wood.png')",
+        grid: "url('/src/assets/grid.png')",
       },
       backgroundSize: {
         grid: "16px 16px",
@@ -36,3 +42,4 @@ export default {
   },
   plugins: [],
 }
+

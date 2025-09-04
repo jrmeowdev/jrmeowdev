@@ -16,6 +16,8 @@ export default function NavigationBar() {
     <header className={`sticky top-0 z-40 transition-all duration-300 ${
       isScrolled ? 'bg-chalk/95 backdrop-blur-md shadow-lg' : 'bg-chalk/90 backdrop-blur'
     } border-b-2 border-neutral-800`}>
+      {/* Awning strip */}
+      <div className="awning h-2 w-full"></div>
       <div className="max-w-6xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo with hanging sign animation */}
@@ -49,14 +51,9 @@ export default function NavigationBar() {
               </span>
             </a>
             <a href="#contact" className="relative inline-flex items-center gap-2">
-              <span className="sticker hover:scale-105 hover:rotate-3 transition-all duration-300 shadow-lg">
-                <span className="relative flex items-center gap-1">
-                  <span className="flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-600 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                  </span>
-                  Open
-                </span>
+              <span className="badge-retro hover:scale-105 transition-transform duration-300">
+                <span className="status-dot" aria-hidden="true"></span>
+                <span className="neon-open font-semibold">Open</span>
               </span>
             </a>
           </nav>
@@ -100,17 +97,6 @@ export default function NavigationBar() {
         </nav>
       </div>
 
-      <style jsx>{`
-        .nav-link {
-          @apply text-neutral-800 font-medium hover:text-brick transition-colors;
-        }
-        .nav-underline {
-          @apply absolute bottom-0 left-0 w-0 h-0.5 bg-brick transition-all duration-300;
-        }
-        .group:hover .nav-underline {
-          @apply w-full;
-        }
-      `}</style>
     </header>
   )
 }

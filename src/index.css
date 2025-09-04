@@ -1,32 +1,295 @@
 @import "tailwindcss";
 
-/* Base layer: fonts and background */
+
 @layer base {
   html {
-    font-family: theme("fontFamily.body");
+    font-family: "Inter", system-ui, sans-serif;
   }
+
+  /* Chip micro-interactions */
+  .chip-press { transition: transform 150ms ease, box-shadow 150ms ease; }
+  .chip-press:active { transform: translateY(1px) scale(0.99); box-shadow: 0 1px 0 rgba(0,0,0,0.05); }
+  .swing-once { animation: swing-once 600ms ease-out; transform-origin: 14px 50%; will-change: transform; }
   body {
-    @apply bg-chalk text-neutral-800 antialiased;
-    background-image: theme("backgroundImage.paper");
-    background-size: theme("backgroundSize.grid");
+    /* Tailwind equivalents without @apply */
+    background-color: #F2F1E8; /* chalk */
+    color: #262626; /* neutral-800 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Use local asset so Vite processes it */
+    background-image: url("./assets/paper-texture.png");
+    background-size: 16px 16px;
     min-height: 100vh;
   }
 }
 
-/* Components */
 @layer components {
   .signage {
-    @apply font-sign text-brick drop-shadow-sm;
+    font-family: "Alfa Slab One", system-ui, sans-serif; /* font-sign */
+    color: #B4413E; /* brick */
     text-shadow: 0 2px 0 rgba(0,0,0,0.2);
   }
   .sticker {
-    @apply bg-mustard text-neutral-900 rounded-full px-3 py-1 shadow-sticker;
+    background-color: #D9A441; /* mustard */
+    color: #171717; /* neutral-900 */
+    border-radius: 9999px; /* rounded-full */
+    padding: 0.25rem 0.75rem; /* py-1 px-3 */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* shadow-sticker */
   }
   .price-tag {
-    @apply bg-brick text-white px-2 py-0.5 rounded-sm text-xs font-semibold rotate-2 inline-block;
+    background-color: #B4413E; /* brick */
+    color: #ffffff;
+    padding: 0.125rem 0.5rem; /* py-0.5 px-2 */
+    border-radius: 0.125rem; /* rounded-sm */
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 600; /* font-semibold */
+    display: inline-block;
+    transform: rotate(2deg);
   }
   .window-grid {
-    @apply border-2 border-neutral-800 bg-white/70 backdrop-blur-sm;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #262626; /* neutral-800 */
+    background-color: rgba(255,255,255,0.7); /* white/70 */
+    backdrop-filter: blur(4px); /* backdrop-blur-sm */
     box-shadow: inset 0 0 0 2px rgba(0,0,0,0.05);
   }
+
+
+  .nav-link {
+    color: #262626; /* neutral-800 */
+    font-weight: 500; /* font-medium */
+    transition: color 150ms;
+  }
+  .nav-link:hover {
+    color: #B4413E; /* brick */
+  }
+  .nav-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px; /* h-0.5 */
+    background-color: #B4413E; /* brick */
+    transition: all 300ms;
+  }
+  .group:hover .nav-underline {
+    width: 100%;
+  }
+
+
+  .awning {
+    /* Use an image asset for the awning stripes */
+    background-image: url("./assets/signage.png");
+    background-size: cover;
+    border: 2px solid rgba(0,0,0,0.15);
+  }
+
+  .neon-open {
+    color: #16a34a; /* green-600 for better legibility */
+    text-shadow:
+      0 1px 0 rgba(0,0,0,0.25),
+      0 0 6px rgba(34, 197, 94, 0.35),
+      0 0 12px rgba(34, 197, 94, 0.2);
+    letter-spacing: 0.3px;
+  }
+
+  /* Retro pill badge for status like "Open" */
+  .badge-retro {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem; /* gap-1.5 */
+    padding: 0.25rem 0.75rem; /* py-1 px-3 */
+    border-radius: 9999px;
+    color: #065f46; /* emerald-800 */
+    background: linear-gradient(180deg, rgba(233,196,106,0.95), rgba(217,164,65,0.95));
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow:
+      0 10px 30px rgba(16, 185, 129, 0.18), /* green ambient */
+      0 2px 0 rgba(0,0,0,0.08),
+      0 4px 12px rgba(0,0,0,0.08);
+    position: relative;
+    backdrop-filter: saturate(1.05);
+  }
+
+  /* Status dot with soft pulse aligned to center */
+  .status-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background-color: #22c55e; /* green-500 */
+    box-shadow: 0 0 0 1px rgba(34,197,94,0.18);
+    position: relative;
+  }
+  .status-dot::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 9999px;
+    background-color: rgba(34,197,94,0.6);
+    animation: ping-soft 2.2s ease-out infinite;
+  }
+
+  /* Heading readability helper */
+  .heading-retro {
+    color: #fffdf5; /* warm off-white for retro feel */
+    text-shadow:
+      0 2px 0 rgba(0,0,0,0.28),
+      0 10px 24px rgba(0,0,0,0.15);
+    letter-spacing: 0.2px;
+  }
+
+  /* Film grain overlay (very soft) */
+  .grain-soft { position: relative; }
+  .grain-soft::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23000000' fill-opacity='0.8'%3E%3Ccircle cx='5' cy='8' r='0.6'/%3E%3Ccircle cx='35' cy='18' r='0.5'/%3E%3Ccircle cx='75' cy='12' r='0.4'/%3E%3Ccircle cx='20' cy='50' r='0.5'/%3E%3Ccircle cx='95' cy='40' r='0.6'/%3E%3Ccircle cx='60' cy='70' r='0.5'/%3E%3Ccircle cx='15' cy='90' r='0.4'/%3E%3Ccircle cx='100' cy='85' r='0.5'/%3E%3Ccircle cx='45' cy='100' r='0.6'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 120px 120px;
+  }
+
+  /* Warm tint wrapper to emulate retro photo warmth */
+  .tint-warm { position: relative; }
+  .tint-warm::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(0deg, rgba(222,204,164,0.06), rgba(255,247,230,0.03));
+  }
+
+  /* Price tag chip for filters */
+  .price-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem; /* py-1.5 px-3 */
+    padding-left: 1.75rem; /* room for the punch hole */
+    font-weight: 600;
+    font-size: 0.8125rem; /* ~text-sm */
+    border-radius: 0.75rem;
+    color: #262626;
+    background: #f5efe1;
+    border: 2px solid #d6b15a; /* mustard outer border */
+    position: relative;
+    transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+  }
+  .price-chip::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: #e9d7a5; /* lighter mustard */
+    box-shadow: inset 0 0 0 2px #fdf7e8;
+  }
+  /* Inner border to emulate double-lined price tag */
+  .price-chip::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 0.6rem;
+    border: 1px solid rgba(214, 177, 90, 0.6);
+    pointer-events: none;
+  }
+
+  .price-chip:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+
+  .price-chip--active {
+    color: #ffffff;
+    background: linear-gradient(180deg, #1fb6ff, #0d9488);
+    border-color: rgba(255,255,255,0.4);
+    box-shadow: 0 6px 18px rgba(31,182,255,0.25);
+  }
+  .price-chip--active::after {
+    border-color: rgba(255,255,255,0.35);
+  }
+  .price-chip--active::before {
+    background: rgba(255,255,255,0.85);
+    box-shadow: inset 0 0 0 2px rgba(13,148,136,0.2);
+  }
+
+  /* Sari-sari grill overlay for interactive cards */
+  .grill-overlay {
+    pointer-events: none;
+    background-color: rgba(255,255,255,0.02);
+    background-image:
+      repeating-linear-gradient(to right, rgba(0,0,0,0.18) 0 2px, transparent 2px 24px),
+      repeating-linear-gradient(to bottom, rgba(0,0,0,0.10) 0 2px, transparent 2px 24px),
+      linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0)); /* subtle glass shine */
+    box-shadow:
+      inset 0 0 0 2px #d6b15a, /* outer mustard frame */
+      inset 0 0 0 6px rgba(214, 177, 90, 0.35); /* inner lighter frame */
+  }
+
+  /* Diorama / Parallax helpers */
+  .diorama {
+    perspective: 800px;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .parallax-layer { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+  .parallax-depth-1 { transform: translateZ(30px); }
+  .parallax-depth-0 { transform: translateZ(0); }
+  .parallax-depth--1 { transform: translateZ(-30px) scale(1.06); }
+
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-float-delayed { animation: float-delayed 8s ease-in-out infinite; }
+  .animate-wiggle { animation: wiggle 2s ease-in-out infinite; }
+  .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; opacity: 0; }
+}
+
+
+@keyframes float { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-20px) } }
+@keyframes float-delayed { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-15px) } }
+@keyframes wiggle { 0%, 100% { transform: rotate(-3deg) } 50% { transform: rotate(3deg) } }
+@keyframes swing-once {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-6deg); }
+  40% { transform: rotate(4deg); }
+  60% { transform: rotate(-2.5deg); }
+  80% { transform: rotate(1.5deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px) } to { opacity: 1; transform: translateY(0) } }
+
+/* Soft ping animation for status dot */
+@keyframes ping-soft {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  70% { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* Asset-based helpers */
+.bg-wood {
+  background-image: url("./assets/wood.png");
+  background-size: cover;
+  background-position: center;
+}
+.bg-chalkboard {
+  background-image: url("./assets/chalkboard-bg.png");
+  background-size: cover;
+  background-position: center;
+}
+.card-paper {
+  background-color: rgba(255,255,255,0.92);
+  background-image: url("./assets/paper-texture.png");
+  background-size: 16px 16px;
+  background-blend-mode: multiply;
+}
+.grid-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/grid.png");
+  background-size: 24px 24px;
+  opacity: 0.08;
+  pointer-events: none;
 }

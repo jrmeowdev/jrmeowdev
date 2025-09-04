@@ -86,7 +86,7 @@ export default function ProductCard({
         )}
 
         {/* Hover overlay with quick actions */}
-        <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3`}>
+        <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3 z-[2]`}>
           <div className="flex gap-2">
             <span className="bg-white/90 backdrop-blur text-neutral-800 px-3 py-1 rounded-md text-xs font-medium hover:bg-white transition">
               View Details
@@ -95,6 +95,15 @@ export default function ProductCard({
               Live Demo
             </span>
           </div>
+        </div>
+
+        {/* Sari-sari grill overlay that slides up on hover */}
+        <div
+          className="absolute inset-0 grill-overlay translate-y-0 group-hover:-translate-y-full transition-transform duration-500 ease-out z-[1]"
+          aria-hidden="true"
+        >
+          {/* optional handle bar at the bottom */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 mb-1 w-20 h-1.5 rounded-full bg-[rgba(0,0,0,0.25)]"></div>
         </div>
       </div>
 
