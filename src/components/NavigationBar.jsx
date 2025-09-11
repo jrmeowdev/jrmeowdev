@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
-export default function NavigationBar() {
+export default function NavigationBar({ darkMode, toggleDarkMode }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -14,89 +15,142 @@ export default function NavigationBar() {
 
   return (
     <header className={`sticky top-0 z-40 transition-all duration-300 ${
-      isScrolled ? 'bg-chalk/95 backdrop-blur-md shadow-lg' : 'bg-chalk/90 backdrop-blur'
-    } border-b-2 border-neutral-800`}>
-      {/* Awning strip */}
-      <div className="awning h-2 w-full"></div>
-      <div className="max-w-6xl mx-auto px-4 py-3">
+      isScrolled 
+        ? 'bg-dominant-light/95 dark:bg-dominant-dark/95 backdrop-blur-md shadow-minimal' 
+        : 'bg-dominant-light/90 dark:bg-dominant-dark/90 backdrop-blur'
+    } border-b border-secondary-200 dark:border-secondary-700`}>
+      <div className="max-w-4xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo with hanging sign animation */}
-          <a href="#home" className="flex items-center gap-2 group">
+          {/* Minimal Logo */}
+          <motion.a 
+            href="#home" 
+            className="flex items-center gap-3 group relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+          >
             <div className="relative">
-              <span className="signage text-xl md:text-2xl tracking-wide transform group-hover:rotate-1 transition-transform duration-300">
-                SARI·SARI
-              </span>
-              <span className="absolute -bottom-1 left-0 text-[10px] text-brick font-semibold tracking-wider">
-                EST. 2025
-              </span>
+              <motion.span 
+                className="text-xl md:text-2xl font-bold text-text-primary dark:text-text-primary-dark tracking-tight relative z-10"
+                whileHover={{
+                  textShadow: "0 0 8px rgba(59, 130, 246, 0.5)",
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                Jeremiah Reyes
+              </motion.span>
+              {/* Glow effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-accent-primary to-accent-primary-dark rounded-lg blur-sm opacity-0 -z-10"
+                whileHover={{ opacity: 0.2 }}
+                transition={{ duration: 0.3 }}
+              />
             </div>
-            <div className="hidden md:block w-px h-8 bg-neutral-400 mx-2" />
-            <span className="hidden md:inline-block text-sm font-medium text-neutral-600 group-hover:text-brick transition-colors">
-              PORTFOLIO
-            </span>
-          </a>
+          </motion.a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
-            <a href="#projects" className="nav-link group">
-              <span className="relative">
-                Projects
-                <span className="nav-underline"></span>
-              </span>
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="#about" className="text-text-secondary dark:text-text-secondary-dark hover:text-accent-primary dark:hover:text-accent-primary-dark transition-colors font-medium">
+              About
             </a>
-            <a href="#about" className="nav-link group">
-              <span className="relative">
-                About
-                <span className="nav-underline"></span>
-              </span>
+            <a href="#projects" className="text-text-secondary dark:text-text-secondary-dark hover:text-accent-primary dark:hover:text-accent-primary-dark transition-colors font-medium">
+              Projects
             </a>
-            <a href="#contact" className="relative inline-flex items-center gap-2">
-              <span className="badge-retro hover:scale-105 transition-transform duration-300">
-                <span className="status-dot" aria-hidden="true"></span>
-                <span className="neon-open font-semibold">Open</span>
-              </span>
+            <a href="#contact" className="text-text-secondary dark:text-text-secondary-dark hover:text-accent-primary dark:hover:text-accent-primary-dark transition-colors font-medium">
+              Contact
             </a>
+            
+            {/* Dark Mode Toggle */}
+            <motion.button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg bg-secondary-100 dark:bg-secondary-800 hover:bg-secondary-200 dark:hover:bg-secondary-700 transition-colors"
+              aria-label="Toggle dark mode"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+            >
+              <motion.div
+                initial={false}
+                animate={{ rotate: darkMode ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {darkMode ? (
+                  <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5 text-slate-700 dark:text-slate-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                  </svg>
+                )}
+              </motion.div>
+            </motion.button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden relative w-8 h-8 flex flex-col justify-center items-center group"
-            aria-label="Menu"
-          >
-            <span className={`block w-6 h-0.5 bg-neutral-800 transition-all duration-300 ${
-              mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
-            }`}></span>
-            <span className={`block w-6 h-0.5 bg-neutral-800 transition-all duration-300 my-1 ${
-              mobileMenuOpen ? 'opacity-0' : ''
-            }`}></span>
-            <span className={`block w-6 h-0.5 bg-neutral-800 transition-all duration-300 ${
-              mobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
-            }`}></span>
-          </button>
+          <div className="md:hidden flex items-center gap-3">
+            <motion.button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg bg-secondary-100 dark:bg-secondary-800 hover:bg-secondary-200 dark:hover:bg-secondary-700 transition-colors"
+              aria-label="Toggle dark mode"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+            >
+              <motion.div
+                initial={false}
+                animate={{ rotate: darkMode ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {darkMode ? (
+                  <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5 text-slate-700 dark:text-slate-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                  </svg>
+                )}
+              </motion.div>
+            </motion.button>
+            
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="relative w-8 h-8 flex flex-col justify-center items-center"
+              aria-label="Menu"
+            >
+              <span className={`block w-6 h-0.5 bg-text-primary dark:bg-text-primary-dark transition-all duration-300 ${
+                mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
+              }`}></span>
+              <span className={`block w-6 h-0.5 bg-text-primary dark:bg-text-primary-dark transition-all duration-300 my-1 ${
+                mobileMenuOpen ? 'opacity-0' : ''
+              }`}></span>
+              <span className={`block w-6 h-0.5 bg-text-primary dark:bg-text-primary-dark transition-all duration-300 ${
+                mobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
+              }`}></span>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
-        <nav className={`md:hidden border-t border-neutral-300 mt-3 pt-3 transition-all duration-300 ${
+        <nav className={`md:hidden border-t border-secondary-200 dark:border-secondary-700 mt-4 pt-4 transition-all duration-300 ${
           mobileMenuOpen ? 'block opacity-100' : 'hidden opacity-0'
         }`}>
-          <div className="flex flex-col gap-3">
-            <a href="#projects" onClick={() => setMobileMenuOpen(false)} 
-               className="text-neutral-800 hover:text-brick transition-colors py-2">
-              Projects
-            </a>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)}
-               className="text-neutral-800 hover:text-brick transition-colors py-2">
+          <div className="flex flex-col gap-4">
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} 
+               className="text-text-secondary dark:text-text-secondary-dark hover:text-accent-primary dark:hover:text-accent-primary-dark transition-colors font-medium py-2">
               About
             </a>
+            <a href="#projects" onClick={() => setMobileMenuOpen(false)}
+               className="text-text-secondary dark:text-text-secondary-dark hover:text-accent-primary dark:hover:text-accent-primary-dark transition-colors font-medium py-2">
+              Projects
+            </a>
             <a href="#contact" onClick={() => setMobileMenuOpen(false)}
-               className="text-neutral-800 hover:text-brick transition-colors py-2">
+               className="text-text-secondary dark:text-text-secondary-dark hover:text-accent-primary dark:hover:text-accent-primary-dark transition-colors font-medium py-2">
               Contact
             </a>
           </div>
         </nav>
       </div>
-
     </header>
   )
 }

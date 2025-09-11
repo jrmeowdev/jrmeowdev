@@ -1,147 +1,189 @@
-import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 export default function ProductCard({ 
   title, 
-  tag = 'Bestseller', 
   description = 'Project description', 
   link = '#',
   tech = ['React', 'Tailwind'],
-  image = null,
+  image,
+  github,
   featured = false
 }) {
-  const [isHovered, setIsHovered] = useState(false)
-  const [imageLoaded, setImageLoaded] = useState(false)
-
-  const tagColors = {
-    'Bestseller': 'bg-brick',
-    '₱ Promo': 'bg-mustard text-neutral-900',
-    'Bagong Dating': 'bg-bottle',
-    'Limited': 'bg-maya',
-    'Sale': 'bg-red-500'
+  // Tech icons mapping
+  const techIcons = {
+    'React': '⚛️',
+    'JavaScript': '🟨',
+    'TypeScript': '🔷',
+    'Node.js': '🟢',
+    'Tailwind': '💨',
+    'CSS': '🎨',
+    'HTML': '🌐',
+    'Vue': '💚',
+    'Next.js': '▲',
+    'MongoDB': '🍃',
+    'Firebase': '🔥',
+    'Python': '🐍',
+    'Express': '🚂'
   }
-
   return (
-    <a 
-      href={link} 
-      className={`group block border-2 rounded-lg overflow-hidden transition-all duration-300 ${
-        featured 
-          ? 'border-maya bg-gradient-to-br from-white to-chalk shadow-xl hover:shadow-2xl transform hover:-translate-y-2' 
-          : 'border-neutral-300 bg-white hover:shadow-xl hover:border-neutral-400 hover:-translate-y-1'
-      }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <motion.div 
+      className="bg-dominant-light dark:bg-dominant-dark rounded-2xl shadow-minimal border border-secondary-200 dark:border-secondary-700 overflow-hidden group hover:border-accent-primary dark:hover:border-accent-primary-dark transition-all duration-300"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      whileHover={{ 
+        y: -10,
+        scale: 1.02,
+        transition: { duration: 0.3, ease: "easeOut" }
+      }}
     >
-      {/* Image Container */}
-      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-chalk to-neutral-100">
+      {/* Image */}
+      <div className="aspect-video bg-secondary-100 dark:bg-secondary-800 relative overflow-hidden">
         {image ? (
-          <div className="relative w-full h-full">
-            <img 
-              src={image} 
-              alt={title}
-              className={`w-full h-full object-cover transition-all duration-700 ${
-                imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-              } group-hover:scale-110`}
-              onLoad={() => setImageLoaded(true)}
-            />
-            {!imageLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-maya"></div>
-              </div>
-            )}
-          </div>
+          <motion.img 
+            src={image} 
+            alt={title}
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
+          />
         ) : (
-          <div className="flex items-center justify-center h-full relative overflow-hidden">
-            {/* Animated placeholder background */}
-            <div className="absolute inset-0 opacity-30">
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-maya/20 to-transparent animate-pulse"></div>
-            </div>
-            
-            {/* Placeholder content */}
-            <div className="relative text-center">
-              <div className="text-4xl mb-2 group-hover:animate-bounce">📦</div>
-              <span className="text-sm text-neutral-500">Project Preview</span>
-            </div>
-          </div>
+          <motion.div 
+            className="w-full h-full flex items-center justify-center text-text-muted dark:text-text-muted-dark"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.span 
+              className="text-4xl"
+              animate={{
+                rotate: [0, 5, -5, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              🖼️
+            </motion.span>
+          </motion.div>
         )}
-
-        {/* Tag */}
-        <div className="absolute top-3 left-3 transform group-hover:rotate-3 transition-transform duration-300">
-          <span className={`${tagColors[tag] || 'bg-neutral-600'} text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg inline-flex items-center gap-1`}>
-            {tag === 'Bestseller' && '🔥'}
-            {tag === '₱ Promo' && '💰'}
-            {tag === 'Bagong Dating' && '✨'}
-            {tag}
-          </span>
-        </div>
-
-        {/* Featured badge */}
+        {/* Featured indicator */}
         {featured && (
           <div className="absolute top-3 right-3">
-            <span className="bg-mustard text-neutral-900 rounded-full p-2 shadow-lg inline-block animate-pulse">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-            </span>
+            <div className="w-3 h-3 bg-accent-primary dark:bg-accent-primary-dark rounded-full"></div>
           </div>
         )}
-
-        {/* Hover overlay with quick actions */}
-        <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3 z-[2]`}>
-          <div className="flex gap-2">
-            <span className="bg-white/90 backdrop-blur text-neutral-800 px-3 py-1 rounded-md text-xs font-medium hover:bg-white transition">
-              View Details
-            </span>
-            <span className="bg-white/90 backdrop-blur text-neutral-800 px-3 py-1 rounded-md text-xs font-medium hover:bg-white transition">
-              Live Demo
-            </span>
-          </div>
-        </div>
-
-        {/* Sari-sari grill overlay that slides up on hover */}
-        <div
-          className="absolute inset-0 grill-overlay translate-y-0 group-hover:-translate-y-full transition-transform duration-500 ease-out z-[1]"
-          aria-hidden="true"
-        >
-          {/* optional handle bar at the bottom */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 mb-1 w-20 h-1.5 rounded-full bg-[rgba(0,0,0,0.25)]"></div>
-        </div>
       </div>
 
       {/* Content */}
-      <div className="p-4">
-        {/* Title with icon */}
-        <div className="flex items-start gap-2 mb-2">
-          <h3 className="font-bold text-lg text-neutral-900 group-hover:text-brick transition-colors flex-1 leading-tight">
+      <motion.div 
+        className="p-6 space-y-3"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        {/* Title */}
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="font-semibold text-lg text-text-primary dark:text-text-primary-dark group-hover:text-accent-primary dark:group-hover:text-accent-primary-dark transition-colors leading-tight">
             {title}
           </h3>
-          <span className="text-maya opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1 duration-300">
-            →
-          </span>
+          <motion.svg 
+            className="w-5 h-5 text-text-muted dark:text-text-muted-dark group-hover:text-accent-primary dark:group-hover:text-accent-primary-dark transition-all flex-shrink-0 mt-0.5" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+            whileHover={{ 
+              x: 5,
+              y: -5,
+              transition: { duration: 0.2 }
+            }}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </motion.svg>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-neutral-600 mb-3 line-clamp-2">
+        <p className="text-text-secondary dark:text-text-secondary-dark leading-relaxed mb-4">
           {description}
         </p>
 
         {/* Tech stack */}
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-2 mb-4">
           {tech.map((item, i) => (
-            <span 
+            <motion.span 
               key={i}
-              className="text-xs bg-chalk/80 border border-neutral-200 px-2 py-0.5 rounded-md text-neutral-600 group-hover:border-maya/30 group-hover:bg-maya/10 transition-all duration-300"
-              style={{ transitionDelay: `${i * 50}ms` }}
+              className="flex items-center gap-1 text-xs bg-secondary-100 dark:bg-secondary-800 text-text-secondary dark:text-text-secondary-dark px-2 py-1 rounded-md transition-colors border border-secondary-200 dark:border-secondary-700"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ 
+                duration: 0.3, 
+                delay: 0.3 + (i * 0.05),
+                ease: "easeOut"
+              }}
+              whileHover={{ 
+                scale: 1.1,
+                y: -2,
+                transition: { duration: 0.2 }
+              }}
             >
+              <motion.span 
+                className="text-sm"
+                animate={{
+                  rotate: [0, 10, -10, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                  ease: "easeInOut"
+                }}
+              >
+                {techIcons[item] || '🔧'}
+              </motion.span>
               {item}
-            </span>
+            </motion.span>
           ))}
         </div>
 
-        {/* Hover indicator */}
-        <div className={`h-0.5 bg-gradient-to-r from-maya to-mustard mt-3 transition-all duration-500 ${
-          isHovered ? 'w-full' : 'w-0'
-        }`}></div>
-      </div>
-    </a>
+        {/* Action Buttons */}
+        <div className="flex gap-3 pt-2">
+          <motion.a
+            href={github || '#'}
+            className="flex items-center gap-2 px-4 py-2 bg-secondary-800 hover:bg-secondary-700 text-white rounded-lg text-sm font-medium transition-colors flex-1 justify-center"
+            whileHover={{ 
+              scale: 1.02,
+              y: -2,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            Code
+          </motion.a>
+          
+          <motion.a
+            href={link || '#'}
+            className="flex items-center gap-2 px-4 py-2 bg-accent-primary hover:bg-accent-secondary text-white rounded-lg text-sm font-medium transition-colors flex-1 justify-center"
+            whileHover={{ 
+              scale: 1.02,
+              y: -2,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Live Demo
+          </motion.a>
+        </div>
+      </motion.div>
+    </motion.div>
   )
 }

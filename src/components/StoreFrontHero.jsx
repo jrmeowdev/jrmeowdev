@@ -1,173 +1,119 @@
-import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 export default function StoreFrontHero() {
-  const [currentTime, setCurrentTime] = useState(new Date())
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const timer = setInterval(() => setCurrentTime(new Date()), 1000)
-    return () => clearInterval(timer)
-  }, [])
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e
-      const { innerWidth, innerHeight } = window
-      setMousePosition({
-        x: (clientX / innerWidth - 0.5) * 20,
-        y: (clientY / innerHeight - 0.5) * 20
-      })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  const formatTime = (date) => {
-    return date.toLocaleTimeString('en-US', { 
-      hour: '2-digit', 
-      minute: '2-digit',
-      hour12: true 
-    })
-  }
-
-  const products = [
-    { icon: '🎨', label: 'Design' },
-    { icon: '⚛️', label: 'React' },
-    { icon: '📱', label: 'Mobile' },
-    { icon: '🚀', label: 'Fast' },
-    { icon: '✨', label: 'Clean' },
-    { icon: '🛠️', label: 'Build' },
-    { icon: '💡', label: 'Ideas' },
-    { icon: '🎯', label: 'Focus' },
-    { icon: '🏆', label: 'Quality' }
+  const skills = [
+    { name: 'React', icon: '⚛️' },
+    { name: 'JavaScript', icon: '🟨' },
+    { name: 'TypeScript', icon: '🔷' },
+    { name: 'Node.js', icon: '🟢' },
+    { name: 'CSS', icon: '🎨' },
+    { name: 'Tailwind', icon: '💨' },
+    { name: 'UI/UX', icon: '✨' },
+    { name: 'Design', icon: '🎯' }
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    }
+  }
+
   return (
-    <section id="home" className="relative overflow-hidden">
-      {/* Awning decorative strip */}
-      <div className="awning h-3 md:h-4 w-full shadow-sm"></div>
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-maya/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-mustard/10 rounded-full blur-3xl animate-float-delayed"></div>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-4 py-16 md:py-24 relative">
-        <div className="grid md:grid-cols-5 gap-8 items-stretch">
-          {/* Animated Signboard */}
-          <div className="md:col-span-2 flex items-center justify-center">
-            <div 
-              className="relative w-full transform transition-transform duration-700 hover:scale-105"
-              style={{
-                transform: `perspective(1000px) rotateY(${mousePosition.x * 0.5}deg) rotateX(${-mousePosition.y * 0.5}deg)`
-              }}
+    <section id="home" className="py-20 md:py-32 px-4">
+      <div className="max-w-4xl mx-auto text-center">
+        {/* Main heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold text-text-primary dark:text-text-primary-dark mb-6 leading-tight"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Full-Stack Developer
+            {/* <motion.span 
+              className="block text-accent-light dark:text-accent-dark"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
             >
-              {/* Hanging chain effect */}
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <div className="w-1 h-4 bg-neutral-600"></div>
-                <div className="w-2 h-2 bg-neutral-700 rounded-full -ml-0.5"></div>
-              </div>
-              
-              {/* Main signboard */}
-              <div className="bg-gradient-to-br from-maya to-maya/90 text-white rounded-lg shadow-signage px-6 py-10 w-full text-center relative overflow-hidden">
-                {/* Wood texture overlay */}
-                <div className="absolute inset-0 opacity-20 bg-gradient-to-b from-transparent via-black/20 to-transparent"></div>
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  <div className="flex items-center justify-center mb-2">
-                    <span className="text-mustard text-2xl animate-pulse">★</span>
-                    <span className="text-chalk/80 mx-2 text-sm">SINCE 2025</span>
-                    <span className="text-mustard text-2xl animate-pulse">★</span>
-                  </div>
-                  <h1 className="signage text-4xl md:text-5xl leading-tight">
-                    Tindahan ni<br/>{`{Your Name}`}
-                  </h1>
-                  <div className="mt-3 space-y-1">
-                    <p className="text-chalk/90 text-sm font-light tracking-wide">
-                      Frontend Developer & Designer
-                    </p>
-                    <div className="flex items-center justify-center gap-2 text-xs text-chalk/70">
-                      <span className="flex items-center gap-1 neon-open font-semibold">
-                        <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                        Open Now
-                      </span>
-                      <span>•</span>
-                      <span>{formatTime(currentTime)}</span>
-                    </div>
-                  </div>
-                </div>
+              & Designer
+            </motion.span> */}
+          </motion.h1>
+          
+          <motion.p 
+            className="text-lg md:text-xl text-text-secondary dark:text-text-secondary-dark mb-8 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+          >
+            I create beautiful, functional web experiences with clean code and thoughtful design.
+          </motion.p>
+        </motion.div>
 
-                {/* Decorative corner brackets */}
-                <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-chalk/30"></div>
-                <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-chalk/30"></div>
-                <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-chalk/30"></div>
-                <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-chalk/30"></div>
-              </div>
-
-              {/* Shadow for depth */}
-              <div className="absolute inset-0 bg-black/20 rounded-lg transform translate-y-2 -z-10 blur-sm"></div>
-            </div>
+        {/* Skills grid */}
+        <motion.div 
+          className="mb-12"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {skills.map((skill, index) => (
+              <motion.span 
+                key={skill.name}
+                className="flex items-center gap-2 px-4 py-2 bg-secondary-100 dark:bg-secondary-800 text-text-secondary dark:text-text-secondary-dark rounded-full text-sm font-medium cursor-default border border-secondary-200 dark:border-secondary-700"
+                variants={itemVariants}
+                whileHover={{ 
+                  scale: 1.1,
+                  y: -5,
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <motion.span 
+                  className="text-base"
+                  animate={{
+                    rotate: [0, 10, -10, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: index * 0.2,
+                    ease: "easeInOut"
+                  }}
+                >
+                  {skill.icon}
+                </motion.span>
+                {skill.name}
+              </motion.span>
+            ))}
           </div>
+        </motion.div>
 
-          {/* Interactive Window Grid */}
-          <div className="md:col-span-3">
-            <div className="window-grid rounded-lg p-4 relative overflow-hidden">
-              {/* Glass effect overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none"></div>
-              
-              {/* Product grid */}
-              <div className="grid grid-cols-3 gap-3 relative z-10">
-                {products.map((product, i) => (
-                  <div 
-                    key={i} 
-                    className="product-tile aspect-square bg-gradient-to-br from-chalk to-white border-2 border-neutral-300 rounded-md flex flex-col items-center justify-center text-sm text-neutral-700 hover:scale-110 hover:shadow-xl hover:border-maya transition-all duration-300 cursor-pointer group"
-                  >
-                    <span className="text-2xl mb-1 group-hover:animate-bounce">{product.icon}</span>
-                    <span className="text-xs font-medium">{product.label}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Store info bar */}
-              <div className="mt-4 bg-white/80 backdrop-blur rounded-md p-3 border border-neutral-200">
-                <div className="flex items-center justify-between flex-wrap gap-2">
-                  <div className="flex items-center gap-3 text-xs">
-                    <span className="flex items-center gap-1">
-                      <span className="text-green-500">●</span>
-                      <span className="text-neutral-600 font-medium">Bukas Daily</span>
-                    </span>
-                    <span className="text-neutral-500">8AM - 8PM</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="sticker text-xs animate-wiggle">New!</span>
-                    <span className="price-tag">Suki Price</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Call to action */}
-              <div className="mt-4 text-center">
-                <a href="#projects" className="inline-flex items-center gap-2 bg-bottle text-white px-6 py-3 rounded-md hover:bg-bottle/90 transition-all duration-300 group">
-                  <span>Browse Products</span>
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="text-neutral-500 text-sm flex flex-col items-center gap-1">
-            <span>Scroll down</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
-        </div>
       </div>
-
     </section>
   )
 }
