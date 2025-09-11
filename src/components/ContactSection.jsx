@@ -72,6 +72,8 @@ export default function ContactSection() {
           >
             <motion.a 
               href="https://ph.linkedin.com/in/jeremiah-reyes-832a02321" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="social-card linkedin-card flex items-center gap-3 p-4 bg-primary-50 dark:bg-primary-900 rounded-lg border border-primary-200 dark:border-primary-700 hover:border-accent-light dark:hover:border-accent-dark transition-colors group"
               whileHover={{ 
                 scale: 1.05,
@@ -97,6 +99,8 @@ export default function ContactSection() {
             
             <motion.a 
               href="https://github.com/jrmeowdev" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="social-card github-card flex items-center gap-3 p-4 bg-primary-50 dark:bg-primary-900 rounded-lg border border-primary-200 dark:border-primary-700 hover:border-accent-light dark:hover:border-accent-dark transition-colors group"
               whileHover={{ 
                 scale: 1.05,
