@@ -91,7 +91,7 @@ export default function ContactSection() {
               >
                 <span className="text-white text-lg">💼</span>
               </motion.div>
-              <div className="social-info">
+              <div className="social-info flex flex-col items-start space-y-0.5 text-left leading-tight">
                 <div className="social-name font-medium text-text-light dark:text-text-dark text-sm">LinkedIn</div>
                 <div className="social-action text-text-light-secondary dark:text-text-dark-secondary text-xs">Connect</div>
               </div>
@@ -118,7 +118,7 @@ export default function ContactSection() {
               >
                 <span className="text-white text-lg">💻</span>
               </motion.div>
-              <div className="social-info">
+              <div className="social-info flex flex-col items-start space-y-0.5 text-left leading-tight">
                 <div className="social-name font-medium text-text-light dark:text-text-dark text-sm">GitHub</div>
                 <div className="social-action text-text-light-secondary dark:text-text-dark-secondary text-xs">View Code</div>
               </div>
