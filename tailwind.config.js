@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
@@ -8,13 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        // 60% - Dominant neutral backgrounds (clean, minimal)
         'dominant-light': '#fefefe',
         'dominant-dark': '#0f0f0f',
         'dominant-light-alt': '#fafafa',
         'dominant-dark-alt': '#1a1a1a',
-        
-        // 30% - Secondary grays (structure, subtle contrast)
         'secondary-50': '#f8fafc',
         'secondary-100': '#f1f5f9',
         'secondary-200': '#e2e8f0',
@@ -25,23 +21,17 @@ export default {
         'secondary-700': '#334155',
         'secondary-800': '#1e293b',
         'secondary-900': '#0f172a',
-        
-        // 10% - Elegant accent (sophisticated highlight)
         'accent-primary': '#2563eb',
         'accent-primary-dark': '#3b82f6',
         'accent-secondary': '#1e40af',
         'accent-light': '#dbeafe',
         'accent-dark': '#1e3a8a',
-        
-        // Text colors (refined hierarchy)
         'text-primary': '#0f172a',
         'text-primary-dark': '#f8fafc',
         'text-secondary': '#475569',
         'text-secondary-dark': '#cbd5e1',
         'text-muted': '#64748b',
         'text-muted-dark': '#94a3b8',
-        
-        // Legacy support (keeping some for compatibility)
         'background-light': '#fefefe',
         'background-dark': '#0f0f0f',
         'primary-100': '#f1f5f9',
@@ -125,4 +115,3 @@ export default {
   },
   plugins: [],
 }
-

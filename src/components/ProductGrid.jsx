@@ -9,42 +9,7 @@ const projects = [
     link: '#',
     featured: true,
     category: 'Web Apps'
-  },
-  // {
-  //   title: 'Task Management App',
-  //   description: 'Collaborative project management tool with real-time updates, file sharing, and team communication.',
-  //   tech: ['Next.js', 'TypeScript', 'Prisma', 'Socket.io'],
-  //   link: '#',
-  //   category: 'Web Apps'
-  // },
-  // {
-  //   title: 'Weather Dashboard',
-  //   description: 'Clean weather application with forecasts, interactive maps, and location-based alerts.',
-  //   tech: ['React', 'Chart.js', 'Weather API', 'Tailwind'],
-  //   link: '#',
-  //   category: 'Dashboard'
-  // },
-  // {
-  //   title: 'Portfolio Website',
-  //   description: 'Minimalist portfolio showcasing projects with smooth animations and responsive design.',
-  //   tech: ['React', 'Framer Motion', 'Tailwind CSS'],
-  //   link: '#',
-  //   category: 'Web Apps'
-  // },
-  // {
-  //   title: 'Expense Tracker',
-  //   description: 'Personal finance app with budget tracking, expense categorization, and spending insights.',
-  //   tech: ['React Native', 'Firebase', 'Chart.js'],
-  //   link: '#',
-  //   category: 'Mobile'
-  // },
-  // {
-  //   title: 'Blog Platform',
-  //   description: 'Content management system with markdown support, SEO optimization, and comment system.',
-  //   tech: ['Next.js', 'MDX', 'Supabase', 'Tailwind'],
-  //   link: '#',
-  //   category: 'Web Apps'
-  // }
+  }
 ]
 
 const categories = ['All', 'Web Apps', 'Mobile', 'Dashboard']
@@ -58,7 +23,6 @@ export default function ProductGrid() {
 
   return (
     <div className="space-y-8">
-      {/* Filter Bar */}
       <div className="flex flex-wrap gap-3 justify-center">
         {categories.map((category) => (
           <button
@@ -76,7 +40,6 @@ export default function ProductGrid() {
         ))}
       </div>
 
-      {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {filteredProjects.map((project, index) => (
           <div 

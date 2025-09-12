@@ -4,7 +4,7 @@ import meImage from '../assets/me.jpg'
 export default function AboutSection() {
   return (
     <div className="grid md:grid-cols-2 gap-16 items-center">
-      {/* Image Frame */}
+
       <div className="flex justify-center">
         <div className="w-80 aspect-[3/4] bg-primary-50 dark:bg-primary-900 border-4 border-primary-200 dark:border-primary-700 rounded-2xl shadow-lg overflow-hidden">
           <img 
@@ -15,7 +15,6 @@ export default function AboutSection() {
         </div>
       </div>
 
-      {/* Content */}
       <motion.div 
         className="space-y-6"
         initial={{ opacity: 0, x: 50 }}

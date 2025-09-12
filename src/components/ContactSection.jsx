@@ -27,7 +27,6 @@ export default function ContactSection() {
             </p>
           </motion.div>
 
-          {/* Email Display */}
           <motion.div 
             className="contact-email-card bg-primary-50 dark:bg-primary-900 rounded-xl p-6 border border-primary-200 dark:border-primary-700"
             initial={{ opacity: 0, y: 20 }}
@@ -62,7 +61,6 @@ export default function ContactSection() {
             </motion.a>
           </motion.div>
 
-          {/* Social Links */}
           <motion.div 
             className="social-links grid grid-cols-2 gap-4"
             initial={{ opacity: 0, y: 30 }}

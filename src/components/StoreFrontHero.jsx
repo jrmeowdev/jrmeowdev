@@ -40,7 +40,6 @@ export default function StoreFrontHero() {
   return (
     <section id="home" className="py-20 md:py-32 px-4">
       <div className="max-w-4xl mx-auto text-center">
-        {/* Main heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,16 +52,7 @@ export default function StoreFrontHero() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Full-Stack Developer
-            {/* <motion.span 
-              className="block text-accent-light dark:text-accent-dark"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              & Designer
-            </motion.span> */}
           </motion.h1>
-          
           <motion.p 
             className="text-lg md:text-xl text-text-secondary dark:text-text-secondary-dark mb-8 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
@@ -72,8 +62,6 @@ export default function StoreFrontHero() {
             I create beautiful, functional web experiences with clean code and thoughtful design.
           </motion.p>
         </motion.div>
-
-        {/* Skills grid */}
         <motion.div 
           className="mb-12"
           variants={containerVariants}
@@ -112,7 +100,6 @@ export default function StoreFrontHero() {
             ))}
           </div>
         </motion.div>
-
       </div>
     </section>
   )

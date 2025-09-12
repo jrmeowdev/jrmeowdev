@@ -17,7 +17,6 @@ export default function Footer() {
     <footer className="border-t border-primary-200 dark:border-primary-700 bg-background-light dark:bg-background-dark">
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Main Info */}
           <div className="md:col-span-2">
             <h3 className="text-lg font-semibold text-text-light dark:text-text-dark mb-4">
               Let's Build Something Great Together
@@ -26,8 +25,6 @@ export default function Footer() {
               I'm always interested in new opportunities and collaborations. 
               Feel free to reach out if you'd like to work together.
             </p>
-            
-            {/* Quick Links */}
             <div className="flex flex-wrap gap-6">
               {quickLinks.map((link, index) => (
                 <a 
@@ -40,8 +37,6 @@ export default function Footer() {
               ))}
             </div>
           </div>
-
-          {/* Contact & Social */}
           <div>
             <h4 className="font-semibold text-text-light dark:text-text-dark mb-4">
               Connect
@@ -59,8 +54,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
-        {/* Bottom Bar */}
         <div className="border-t border-primary-200 dark:border-primary-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-text-light-secondary dark:text-text-dark-secondary">

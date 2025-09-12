@@ -9,7 +9,6 @@ export default function ProductCard({
   github,
   featured = false
 }) {
-  // Tech icons mapping
   const techIcons = {
     'React': '⚛️',
     'JavaScript': '🟨',
@@ -38,7 +37,6 @@ export default function ProductCard({
         transition: { duration: 0.3, ease: "easeOut" }
       }}
     >
-      {/* Image */}
       <div className="aspect-video bg-secondary-100 dark:bg-secondary-800 relative overflow-hidden">
         {image ? (
           <motion.img 
@@ -69,7 +67,6 @@ export default function ProductCard({
             </motion.span>
           </motion.div>
         )}
-        {/* Featured indicator */}
         {featured && (
           <div className="absolute top-3 right-3">
             <div className="w-3 h-3 bg-accent-primary dark:bg-accent-primary-dark rounded-full"></div>
@@ -77,7 +74,6 @@ export default function ProductCard({
         )}
       </div>
 
-      {/* Content */}
       <motion.div 
         className="p-6 space-y-3"
         initial={{ opacity: 0 }}
@@ -85,7 +81,6 @@ export default function ProductCard({
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        {/* Title */}
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-semibold text-lg text-text-primary dark:text-text-primary-dark group-hover:text-accent-primary dark:group-hover:text-accent-primary-dark transition-colors leading-tight">
             {title}
@@ -105,12 +100,10 @@ export default function ProductCard({
           </motion.svg>
         </div>
 
-        {/* Description */}
         <p className="text-text-secondary dark:text-text-secondary-dark leading-relaxed mb-4">
           {description}
         </p>
 
-        {/* Tech stack */}
         <div className="flex flex-wrap gap-2 mb-4">
           {tech.map((item, i) => (
             <motion.span 
@@ -149,7 +142,6 @@ export default function ProductCard({
           ))}
         </div>
 
-        {/* Action Buttons */}
         <div className="flex gap-3 pt-2">
           <motion.a
             href={github || '#'}

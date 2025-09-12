@@ -21,7 +21,6 @@ export default function NavigationBar({ darkMode, toggleDarkMode }) {
     } border-b border-secondary-200 dark:border-secondary-700`}>
       <div className="max-w-4xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Minimal Logo */}
           <motion.a 
             href="#home" 
             className="flex items-center gap-3 group relative"
@@ -38,7 +37,6 @@ export default function NavigationBar({ darkMode, toggleDarkMode }) {
               >
                 Jeremiah Reyes
               </motion.span>
-              {/* Glow effect */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-accent-primary to-accent-primary-dark rounded-lg blur-sm opacity-0 -z-10"
                 whileHover={{ opacity: 0.2 }}
@@ -47,7 +45,6 @@ export default function NavigationBar({ darkMode, toggleDarkMode }) {
             </div>
           </motion.a>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <a href="#about" className="text-text-secondary dark:text-text-secondary-dark hover:text-accent-primary dark:hover:text-accent-primary-dark transition-colors font-medium">
               About
@@ -59,7 +56,6 @@ export default function NavigationBar({ darkMode, toggleDarkMode }) {
               Contact
             </a>
             
-            {/* Dark Mode Toggle */}
             <motion.button
               onClick={toggleDarkMode}
               className="p-2 rounded-lg bg-secondary-100 dark:bg-secondary-800 hover:bg-secondary-200 dark:hover:bg-secondary-700 transition-colors"
@@ -86,7 +82,6 @@ export default function NavigationBar({ darkMode, toggleDarkMode }) {
             </motion.button>
           </nav>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-3">
             <motion.button
               onClick={toggleDarkMode}
@@ -131,7 +126,6 @@ export default function NavigationBar({ darkMode, toggleDarkMode }) {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <nav className={`md:hidden border-t border-secondary-200 dark:border-secondary-700 mt-4 pt-4 transition-all duration-300 ${
           mobileMenuOpen ? 'block opacity-100' : 'hidden opacity-0'
         }`}>

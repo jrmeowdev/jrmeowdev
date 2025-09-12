@@ -51,18 +51,13 @@ export default function WindowDiorama() {
       style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
       aria-label="Sari-sari window diorama"
     >
-      {/* Background chalkboard */}
       <div className="parallax-layer parallax-depth--1 bg-chalkboard rounded-lg" />
-
-      {/* Shelves / items (emoji stand-ins for now) */}
       <div className="parallax-layer parallax-depth-0 pointer-events-none">
         <div className="absolute left-4 top-6 text-2xl animate-float">🥫</div>
         <div className="absolute left-16 top-10 text-2xl animate-float-delayed">🍪</div>
         <div className="absolute left-28 top-7 text-2xl animate-float">🥤</div>
         <div className="absolute left-40 top-12 text-2xl animate-float-delayed">🍜</div>
       </div>
-
-      {/* Foreground note and bell */}
       <div className="parallax-layer parallax-depth-1">
         <div className="absolute right-4 top-4 bg-white/80 border border-neutral-200 rounded-md px-2 py-1 text-xs text-neutral-700 shadow-sm">Bukas: 8AM–8PM</div>
         <button
@@ -72,8 +67,6 @@ export default function WindowDiorama() {
           type="button"
         >🔔</button>
       </div>
-
-      {/* Grill overlay */}
       <div className="absolute inset-0 grill-overlay rounded-lg" aria-hidden="true" />
     </div>
   )
