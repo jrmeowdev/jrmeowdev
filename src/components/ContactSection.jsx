@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import linkedinIcon from '../assets/icons8-linkedin.svg'
+import githubIcon from '../assets/icons8-github.svg'
 
 export default function ContactSection() {
   return (
@@ -22,8 +24,7 @@ export default function ContactSection() {
               Let's Connect
             </h2>
             <p className="contact-description text-lg text-text-light-secondary dark:text-text-dark-secondary leading-relaxed mb-6">
-              Ready to bring your ideas to life? I'm always excited to work on new projects 
-              and collaborate with amazing people.
+              Let's work together on your next project.
             </p>
           </motion.div>
 
@@ -59,6 +60,19 @@ export default function ContactSection() {
             >
               jeremiahreyes.r01@gmail.com
             </motion.a>
+            <div className="mt-4 text-center">
+              <p className="text-text-light-secondary dark:text-text-dark-secondary text-sm">
+                <a
+                  href="https://www.google.com/maps/place/SJDM,+Bulacan/@14.8051332,121.0438507,14.66z/data=!4m6!3m5!1s0x3397afa422693581:0x981101434383975d!8m2!3d14.828674!4d121.0432425!16zL20vMDFzbjRy?entry=ttu&g_ep=EgoyMDI1MDkxMC4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-accent-primary dark:hover:text-accent-primary-dark transition-colors"
+                >
+                  <span aria-hidden="true">🏠</span>
+                  <span>San Jose del Monte, Bulacan.</span>
+                </a>
+              </p>
+            </div>
           </motion.div>
 
           <motion.div 
@@ -87,7 +101,7 @@ export default function ContactSection() {
                   transition: { duration: 0.2 }
                 }}
               >
-                <span className="text-white text-lg">💼</span>
+                <img src={linkedinIcon} alt="LinkedIn" className="w-6 h-6" />
               </motion.div>
               <div className="social-info flex flex-col items-start space-y-0.5 text-left leading-tight">
                 <div className="social-name font-medium text-text-light dark:text-text-dark text-sm">LinkedIn</div>
@@ -114,7 +128,7 @@ export default function ContactSection() {
                   transition: { duration: 0.2 }
                 }}
               >
-                <span className="text-white text-lg">💻</span>
+                <img src={githubIcon} alt="GitHub" className="w-6 h-6" />
               </motion.div>
               <div className="social-info flex flex-col items-start space-y-0.5 text-left leading-tight">
                 <div className="social-name font-medium text-text-light dark:text-text-dark text-sm">GitHub</div>

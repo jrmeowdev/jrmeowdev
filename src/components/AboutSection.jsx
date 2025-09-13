@@ -6,7 +6,7 @@ export default function AboutSection() {
     <div className="grid md:grid-cols-2 gap-16 items-center">
 
       <div className="flex justify-center">
-        <div className="w-80 aspect-[3/4] bg-primary-50 dark:bg-primary-900 border-4 border-primary-200 dark:border-primary-700 rounded-2xl shadow-lg overflow-hidden">
+        <div className="w-64 h-64 md:w-80 md:h-80 bg-primary-50 dark:bg-primary-900 border-4 border-primary-200 dark:border-primary-700 rounded-full shadow-lg overflow-hidden">
           <img 
             src={meImage} 
             alt="Profile photo" 
@@ -32,8 +32,7 @@ export default function AboutSection() {
             About Me
           </h2>
           <p className="text-lg text-text-light-secondary dark:text-text-dark-secondary leading-relaxed mb-6">
-            I'm a frontend developer passionate about creating beautiful, functional web experiences. 
-            I specialize in React, TypeScript, and modern web technologies.
+          I'm an IT graduate who loves building apps and websites. I work with React, PHP, and MySQL to create simple, scalable, and user-friendly projects
           </p>
         </motion.div>
 
@@ -41,18 +40,18 @@ export default function AboutSection() {
           {[
             {
               icon: "🎯",
-              title: "Frontend Focus",
-              description: "Specialized in React, Next.js, and modern JavaScript frameworks"
+              title: "Full-Stack Development",
+              description: "Proficient in HTML, CSS, JavaScript, PHP, MySQL, and modern frameworks like React"
             },
             {
-              icon: "🎨",
-              title: "Design Minded",
-              description: "Strong focus on UI/UX design and creating intuitive user experiences"
+              icon: "🎓",
+              title: "IT Graduate",
+              description: "Bachelor of Science in Information Technology from Bulacan State University (2020-2024)"
             },
             {
               icon: "⚡",
-              title: "Performance Driven",
-              description: "Committed to building fast, accessible, and scalable applications"
+              title: "Agile Methodologies",
+              description: "Experienced in building scalable applications using cutting-edge technologies and Agile practices"
             }
           ].map((item, index) => (
             <motion.div 
