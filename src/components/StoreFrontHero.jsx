@@ -2,14 +2,14 @@ import { motion } from 'framer-motion'
 
 export default function StoreFrontHero() {
   const skills = [
-    { name: 'React', icon: '⚛️' },
-    { name: 'JavaScript', icon: '🟨' },
-    { name: 'TypeScript', icon: '🔷' },
-    { name: 'Node.js', icon: '🟢' },
+    { name: 'HTML', icon: '🌐' },
     { name: 'CSS', icon: '🎨' },
-    { name: 'Tailwind', icon: '💨' },
-    { name: 'UI/UX', icon: '✨' },
-    { name: 'Design', icon: '🎯' }
+    { name: 'JavaScript', icon: '🟨' },
+    { name: 'PHP', icon: '🐘' },
+    { name: 'MySQL', icon: '🗄️' },
+    { name: 'React', icon: '⚛️' },
+    { name: 'Node.js', icon: '🟢' },
+    { name: 'Java', icon: '☕' }
   ]
 
   const containerVariants = {
@@ -51,7 +51,7 @@ export default function StoreFrontHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Full-Stack Developer
+            Hey, I'm Jeremiah.
           </motion.h1>
           <motion.p 
             className="text-lg md:text-xl text-text-secondary dark:text-text-secondary-dark mb-8 max-w-2xl mx-auto leading-relaxed"
@@ -59,7 +59,13 @@ export default function StoreFrontHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
           >
-            I create beautiful, functional web experiences with clean code and thoughtful design.
+            I'm a Full-Stack Web Developer.
+            <span className="ml-3 inline-flex items-center align-middle">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-600/20 text-green-600 hover:bg-green-500/20 hover:text-green-500 text-sm whitespace-nowrap align-middle">
+                <span className="text-green-600">●</span>
+                Open to work
+              </span>
+            </span>
           </motion.p>
         </motion.div>
         <motion.div 
