@@ -1,13 +1,36 @@
 import { useState } from 'react'
 import ProductCard from './ProductCard.jsx'
+import kitakoImage from '../assets/KitaKo.png'
+import mssgemeImage from '../assets/mssgeme.png'
 
 const projects = [
+  {
+    title: '🪙 KitaKo — "I See My Income"',
+    description: 'A modern budgeting app that helps students, workers, and families manage money wisely with clarity and control. KitaKo allows users to input their income and expenses, visualize their spending through charts, and even download summaries in PDF form. Built for accessibility — usable both online and offline — promoting smart financial management for everyday users.',
+    tech: ['React', 'JavaScript', 'CSS'],
+    link: 'https://fbex-calcu.vercel.app/',
+    github: 'https://github.com/jrmeowdev?tab=repositories',
+    image: kitakoImage,
+    featured: true,
+    category: 'Web Apps'
+  },
+  {
+    title: '💬 MessageMe — Secure Messaging Platform',
+    description: 'MessageMe is a real-time messaging application built with a focus on privacy and security. It features encrypted communication, user authentication, and a clean chat interface that balances simplicity and safety. Designed for users who value secure conversations and a modern UI experience.',
+    tech: ['React', 'Node.js', 'Firebase'],
+    link: 'https://mssgeme-app.vercel.app/',
+    github: 'https://github.com/jrmeowdev?tab=repositories',
+    image: mssgemeImage,
+    featured: true,
+    category: 'Web Apps'
+  },
   {
     title: 'E-Commerce Platform',
     description: 'Modern e-commerce solution with real-time inventory, payment processing, and analytics dashboard.',
     tech: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
     link: '#',
-    featured: true,
+    github: 'https://github.com/jrmeowdev?tab=repositories',
+    featured: false,
     category: 'Web Apps'
   }
 ]
@@ -52,6 +75,8 @@ export default function ProductGrid() {
               description={project.description}
               tech={project.tech}
               link={project.link}
+              github={project.github}
+              image={project.image}
               featured={project.featured}
             />
           </div>

@@ -9,7 +9,8 @@ export default function StoreFrontHero() {
     { name: 'MySQL', icon: '🗄️' },
     { name: 'React', icon: '⚛️' },
     { name: 'Node.js', icon: '🟢' },
-    { name: 'Java', icon: '☕' }
+    { name: 'Java', icon: '☕' },
+    { name: 'Firebase', icon: '🔥' },
   ]
 
   const containerVariants = {
