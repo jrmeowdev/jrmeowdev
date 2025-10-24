@@ -2,6 +2,7 @@ import { useState } from 'react'
 import ProductCard from './ProductCard.jsx'
 import kitakoImage from '../assets/KitaKo.png'
 import mssgemeImage from '../assets/mssgeme.png'
+import ecowaiImage from '../assets/ecowai.png'
 
 const projects = [
   {
@@ -25,12 +26,13 @@ const projects = [
     category: 'Web Apps'
   },
   {
-    title: 'E-Commerce Platform',
-    description: 'Modern e-commerce solution with real-time inventory, payment processing, and analytics dashboard.',
-    tech: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
+    title: 'E-Commerce with AI Automation',
+    description: 'A full-stack e-commerce platform with AI-powered smart search, visual search, and a GPT-3.5 chatbot. Features secure authentication, real-time updates, and personalized shopping experiences.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB'],
     link: '#',
     github: 'https://github.com/jrmeowdev?tab=repositories',
-    featured: false,
+    featured: true,
+    image: ecowaiImage,
     category: 'Web Apps'
   }
 ]

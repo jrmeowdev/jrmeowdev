@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import meImage from '../assets/me.jpg'
+import meImage from '../assets/me.png'
 
 export default function AboutSection() {
   return (
@@ -32,7 +32,9 @@ export default function AboutSection() {
             About Me
           </h2>
           <p className="text-lg text-text-light-secondary dark:text-text-dark-secondary leading-relaxed mb-6">
-          I'm an IT graduate who loves building apps and websites. I work with React, PHP, and MySQL to create simple, scalable, and user-friendly projects
+          I'm a BSIT graduate and consistent Dean’s Lister with hands-on experience in Full Stack 
+          Web and Mobile Development, passionate about creating scalable, user-centered, and efficient solutions that 
+          enhance accessibility and impact user experience. 
           </p>
         </motion.div>
 
@@ -41,7 +43,7 @@ export default function AboutSection() {
             {
               icon: "🎯",
               title: "Full-Stack Development",
-              description: "Proficient in HTML, CSS, JavaScript, PHP, MySQL, and modern frameworks like React"
+              description: "Proficient in HTML, CSS, JavaScript, PHP, MySQL, and modern frameworks like React, Node.js, and Laravel"
             },
             {
               icon: "🎓",
